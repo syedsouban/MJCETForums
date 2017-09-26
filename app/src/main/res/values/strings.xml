@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MJ Forums</string>
+    <string name="sample_text">Write down your ideas and\n ask your friends  or
+        professionals \nfor tips Level up your skills \n today on IdeaBoard</string>
+
+    <string name="facebook_app_id">858439330980270</string>
+    <string name="fb_login_protocol_scheme">fb858439330980270</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">8d368dc4985ed1cf0f3a03697936caaf</string>
+    <string name="com.facebook.accountkit.ApplicationName">MJCET Forums</string>
+</resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "377840476148",
+    "project_id": "mjcet-forums"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377840476148:android:215e2da4991a3c85",
+        "android_client_info": {
+          "package_name": "com.syedsauban.mjforums"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377840476148-90s4ct5ufcnopc9egaak2haf9cdbakvk.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "377840476148-i28rfcqr25pn21snr4t2g39voo1ftf2p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.syedsauban.mjforums",
+            "certificate_hash": "888e73c3a99434bd15407d27bb259baf01ba2e7a"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAthYctTXluText1Aiah2-x2Hx0rBkkkG0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
