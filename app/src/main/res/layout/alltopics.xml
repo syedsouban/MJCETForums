@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <com.syedsauban.mjforums.MyTextView
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        tools:ignore="MissingPrefix"
+        fontPath="font/weblysleek_ui_normal.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:id="@+id/tv1"
+        android:text="By Topic Tab in weblysleek_ui_normal"/>
 
-        android:text="By Topic Tab in rokkitt bold"/>
+    <TextView
+        tools:ignore="MissingPrefix"
+        fontPath="font/rokkitt_bold.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_centerHorizontal="true"
+        android:text="By Topic Tab in rokkitt_bold"/>
 
 </RelativeLayout>

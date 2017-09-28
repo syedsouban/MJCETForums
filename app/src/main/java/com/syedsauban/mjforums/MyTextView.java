@@ -22,13 +22,18 @@ public class MyTextView extends AppCompatTextView {
         init();
     }
 
-    public MyTextView(Context context) {
+    public MyTextView(Context context, String fontName) {
         super(context);
-        init();
+        init(fontName);
     }
 
+
+    public void init(String fontName) {
+        Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "font/"+fontName+".ttf");
+        setTypeface(tf ,1);
+    }
     public void init() {
-        Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "font/rokkitt_bold.ttf");
+        Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "font/tabfont.ttf");
         setTypeface(tf ,1);
     }
 }

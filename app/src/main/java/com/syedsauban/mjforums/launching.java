@@ -1,5 +1,6 @@
 package com.syedsauban.mjforums;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -24,6 +25,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class launching extends AppCompatActivity {
 
@@ -149,5 +152,9 @@ public class launching extends AppCompatActivity {
             }
             return null;
         }
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
