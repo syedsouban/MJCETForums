@@ -19,7 +19,7 @@
             android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN" />
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
-            android:value="@string/com.facebook.accountkit.ApplicationName"></meta-data>
+            android:value="@string/com.facebook.accountkit.ApplicationName" />
 
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -37,18 +37,18 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".demo">
-
-        </activity>
+        <activity android:name=".demo"></activity>
         <activity android:name=".LoginScreen" />
         <activity android:name=".SignupScreen" />
-        <activity android:name=".Test"></activity>
+        <activity android:name=".Test" />
         <activity android:name=".launching">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UserProfile"></activity>
     </application>
 
 </manifest>

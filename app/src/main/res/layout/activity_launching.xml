@@ -84,7 +84,7 @@
         android:id="@+id/navigation_view"
         android:layout_height="match_parent"
         android:layout_width="320dp"
-        margi
+
         app:itemBackground="@color/secoond"
         android:layout_gravity="start"
         app:itemTextColor="@color/first"

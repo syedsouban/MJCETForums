@@ -41,6 +41,7 @@ public class launching extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    NavigationView navigation;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -51,7 +52,39 @@ public class launching extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launching);
 
-        drawerLayout=(DrawerLayout)findViewById(R.id.drawer);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+
+        navigation = (NavigationView) findViewById(R.id.navigation_view);
+        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                switch (id) {
+                    case R.id.my_profile:
+                        //Do some thing here
+                        // add navigation drawer item onclick method here
+                        break;
+                    case R.id.help:
+                        //Do some thing here
+                        // add navigation drawer item onclick method here
+                        break;
+                    case R.id.support:
+                        //Do some thing here
+                        // add navigation drawer item onclick method here
+                        break;
+                    case R.id.terms_and_conditions:
+                        //Do some thing here
+                        // add navigation drawer item onclick method here
+                        break;
+                    case R.id.logout:
+                        //Do some thing here
+                        // add navigation drawer item onclick method here
+                        break;
+                }
+                return false;
+            }
+        });
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,7 +101,7 @@ public class launching extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         for (int i = 0; i < toolbar.getChildCount(); i++) {
-            if(toolbar.getChildAt(i) instanceof ImageButton){
+            if (toolbar.getChildAt(i) instanceof ImageButton) {
                 toolbar.getChildAt(i).setScaleX(0.5f);
                 toolbar.getChildAt(i).setScaleY(0.5f);
 //
@@ -81,7 +114,6 @@ public class launching extends AppCompatActivity {
 
             }
         }
-
 
 
     }
