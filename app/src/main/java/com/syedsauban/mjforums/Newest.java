@@ -33,7 +33,5 @@ public class Newest extends android.support.v4.app.Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         return rootView;
-
-
     }
 }
