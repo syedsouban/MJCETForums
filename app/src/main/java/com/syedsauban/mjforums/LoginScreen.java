@@ -35,8 +35,7 @@ CallbackManager callbackManager;
 
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
-        // If using in a fragment
-        // Callback registration
+
         callbackManager=CallbackManager.Factory.create();
         Button button=(Button)findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
@@ -78,12 +77,9 @@ CallbackManager callbackManager;
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-
     public void onSignUpClicked(View view)
     {
         startActivity(new Intent(LoginScreen.this,SignupScreen.class));
     }
-
-
     }
 

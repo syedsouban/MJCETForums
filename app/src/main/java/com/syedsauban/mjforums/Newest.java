@@ -17,5 +17,4 @@ public class Newest extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.newest,container,false);
     }
-
 }

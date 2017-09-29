@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="students">
+        <item>Syed</item>
+        <item>Irfan</item>
+        <item>Adil</item>
+        <item>Salman</item>
+        <item>Shoaeb</item>
+        <item>Saad</item>
+        <item>Ishaq</item>
+        <item>David</item>
+        <item>Adam</item>
+        <item>Rahul</item>
+        <item>Pathan</item>
+        <item>Asfia</item>
+        <item>Noorul</item>
+    </string-array>
+    <string-array name="rollnumber_of_students">
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+    </string-array>
+</resources>
