@@ -19,7 +19,7 @@ public class demo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newest);
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerviewinfeed);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerviewinfeed);
         ArrayList<FeedClass> a1 = new ArrayList<FeedClass>();
         a1.add(new FeedClass("who is hod", "Ajaz", "Souban", "To spot gravitational waves directly for the first time ever, scientists had to measure a distance change 1,000 times smaller than the width of a proton.  Researchers with the Laser Interferometer Gravitational-Wave Observatory (LIGO) announced today (Feb. 11) that they had made history's first direct detection of gravitational waves, enig", "Intern at Chronology", R.drawable.answer_profile));
         a1.add(new FeedClass("who is hod", "Ajaz", "Souban", "To spot gravitational waves directly for the first time ever, scientists had to measure a distance change 1,000 times smaller than the width of a proton.  Researchers with the Laser Interferometer Gravitational-Wave Observatory (LIGO) announced today (Feb. 11) that they had made history's first direct detection of gravitational waves, enig", "Intern at Chronology", R.drawable.answer_profile));
@@ -33,6 +33,7 @@ public class demo extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

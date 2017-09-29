@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         tools:ignore="MissingPrefix"
-        fontPath="font/WeblySleek_UI_Normal.ttf"
+        fontPath="font/rokkitt_bold.ttf"
         android:text="How was the Einstein's theory that suggested existence of  gravitational waves was proved?"
         android:textColor="#666666"
         android:textSize="18sp"
