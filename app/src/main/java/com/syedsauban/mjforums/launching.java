@@ -1,6 +1,7 @@
 package com.syedsauban.mjforums;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -61,8 +62,7 @@ public class launching extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.my_profile:
-                        //Do some thing here
-                        // add navigation drawer item onclick method here
+                        startActivity(new Intent(launching.this,UserProfile.class));
                         break;
                     case R.id.help:
                         //Do some thing here
