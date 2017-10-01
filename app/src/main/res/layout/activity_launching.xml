@@ -64,12 +64,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                tools:ignore="MissingPrefix"
+                fontPath="font/weblysleekuil.ttf"
                 android:background="@drawable/tab"
                 app:tabIndicatorColor="#80c7ff"
                 android:elevation="0dp"
                 app:tabIndicatorHeight="3dp"
-                app:tabSelectedTextColor="#474747"
-                app:tabTextColor="#a2a5a7" />
+                app:tabSelectedTextColor="#1D1D1D"
+                app:tabTextColor="#95989A" />
 
         </android.support.design.widget.AppBarLayout>
 

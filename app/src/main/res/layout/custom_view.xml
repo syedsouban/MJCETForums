@@ -1,126 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#F3F5F8">
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="9dp"
+        android:background="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerpreview"
+        app:srcCompat="@drawable/upvote" />
 
     <TextView
         android:id="@+id/question"
-        android:layout_width="wrap_content"
+        fontPath="font/weblysleekuisb.ttf"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        tools:ignore="MissingPrefix"
-        fontPath="font/rokkitt_bold.ttf"
         android:text="How was the Einstein's theory that suggested existence of  gravitational waves was proved?"
-        android:textColor="#666666"
-        android:textSize="18sp"
+        android:textColor="#1d1d1d"
+        android:textSize="24sp"
         android:visibility="visible"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingPrefix" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        tools:ignore="MissingPrefix"
+        fontPath="font/weblysleekuil.ttf"
+        android:layout_marginStart="8dp"
         android:text="asked by"
-        android:textSize="10sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:textSize="12sp"
+        android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@+id/question"
-        android:layout_marginStart="8dp" />
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/askedby"
+        fontPath="font/weblysleek_ui_normal.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="0dp"
         android:text="Syed Souban"
-        android:textSize="12sp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintTop_toBottomOf="@+id/question"
+        android:textSize="14sp"
         app:layout_constraintLeft_toRightOf="@+id/textView7"
-        android:layout_marginLeft="4dp"
-        android:layout_marginStart="4dp" />
+        app:layout_constraintTop_toBottomOf="@+id/question"
+        tools:ignore="MissingPrefix" />
 
     <ImageView
         android:id="@+id/answerprofile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:srcCompat="@drawable/answer_profile"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:srcCompat="@drawable/answer_profile" />
 
     <TextView
         android:id="@+id/answeredbyname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
         android:text="Syed Qadar"
         android:textColor="#1d1d1d"
         android:textSize="12sp"
-        android:layout_marginTop="22dp"
         app:layout_constraintTop_toBottomOf="@+id/askedby"
         app:layout_constraintLeft_toRightOf="@+id/answerprofile"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp" />
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/answerCredential"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="sans-serif"
         android:text="works at cronlogy"
         android:textColor="#666666"
         android:textSize="10sp"
         app:layout_constraintLeft_toRightOf="@+id/answerprofile"
-        app:layout_constraintTop_toBottomOf="@+id/answeredbyname"
-        android:layout_marginStart="8dp" />
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/answeredbyname" />
 
     <TextView
         android:id="@+id/answerpreview"
-        android:layout_width="wrap_content"
+        fontPath="font/weblysleek_ui_normal.ttf"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="none"
+        android:lineSpacingExtra="2sp"
+        android:maxLines="4"
+        android:minLines="1"
         android:text="To spot gravitational waves directly for the first time ever, scientists had to measure a distance change 1,000 times smaller than the width of a proton.  Researchers with the Laser Interferometer Gravitational-Wave Observatory (LIGO) announced today (Feb. 11) that they had made history's first direct detection of gravitational waves, enig"
-        android:textSize="12sp"
+        android:textColor="#1d1d1d"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answerCredential" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerCredential"
+        tools:ignore="MissingPrefix" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="0dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="0dp"
         android:text="Read more ...."
         android:textAllCaps="false"
         android:textColor="#80c7ff"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginEnd="28dp"
-        android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@+id/answerpreview" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="87dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="12dp"
-        android:background="@null"
-        app:layout_constraintTop_toBottomOf="@+id/answerpreview"
-        app:srcCompat="@drawable/upvote"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
