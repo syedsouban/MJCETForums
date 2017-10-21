@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ import android.view.ViewGroup;
 
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,7 +33,10 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class launching extends AppCompatActivity {
 
+    ImageView thumbsUp;
+    ImageView thumbsDown;
     DrawerLayout drawerLayout;
+    ImageView navigationMenuIcon;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -53,10 +58,16 @@ public class launching extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launching);
 
+        navigationMenuIcon=(ImageView)findViewById(R.id.nav_menu_icon);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-
+        navigationMenuIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    drawerLayout.openDrawer(Gravity.START);
+            }
+        });
         navigation = (NavigationView) findViewById(R.id.navigation_view);
-        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+       navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
@@ -88,7 +99,7 @@ public class launching extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.menu_icon);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -104,16 +115,9 @@ public class launching extends AppCompatActivity {
             if (toolbar.getChildAt(i) instanceof ImageButton) {
                 toolbar.getChildAt(i).setScaleX(0.5f);
                 toolbar.getChildAt(i).setScaleY(0.5f);
-//
-//          Toolbar.LayoutParams params = new Toolbar.LayoutParams(
-//                        Toolbar.LayoutParams.WRAP_CONTENT,
-//                        Toolbar.LayoutParams.WRAP_CONTENT
-//                );
-//                params.setMargins(10, 20, 20, 20);
-//                toolbar.getChildAt(i).setLayoutParams(params);
-
             }
         }
+
 
 
     }
@@ -188,5 +192,8 @@ public class launching extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+    public static float pxFromDp(float dp, Context mContext) {
+        return dp * mContext.getResources().getDisplayMetrics().density;
     }
 }

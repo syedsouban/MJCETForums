@@ -26,32 +26,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Syed Souban"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
-        android:layout_toRightOf="@id/profindr"
+        android:layout_marginLeft="16dp"
 
-         />
+        android:layout_marginTop="60dp"
+        android:layout_toRightOf="@+id/profindr"
+        android:layout_toEndOf="@+id/profindr"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:textColor="#FFFFFF"
-        android:id="@+id/textView7"
+        android:id="@+id/askedBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CSE III/IV"
-        android:layout_marginTop="10dp"
+        android:layout_alignBottom="@+id/profindr"
         android:layout_alignLeft="@+id/textView6"
         android:layout_alignStart="@+id/textView6"
-        android:layout_below="@+id/textView6" />
+        android:layout_marginBottom="9dp" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/readmore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="ADMIN"
-        android:layout_alignTop="@id/textView7"
-        android:layout_alignBottom="@id/textView7"
+        android:layout_alignTop="@id/askedBy"
+        android:layout_alignBottom="@id/askedBy"
         android:layout_below="@+id/textView6"
-        android:layout_toRightOf="@id/textView7"/>
+        android:layout_toRightOf="@id/askedBy"/>
 
 </RelativeLayout>

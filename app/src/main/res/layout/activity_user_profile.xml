@@ -46,7 +46,7 @@
 
     <TextView
         android:textColor="#989898"
-        android:id="@+id/textView7"
+        android:id="@+id/askedBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CSE III/IV"
@@ -60,15 +60,15 @@
         android:layout_marginStart="108dp" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/readmore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ADMIN"
         android:textColor="#989898"
-        android:layout_alignTop="@id/textView7"
-        android:layout_alignBottom="@id/textView7"
+        android:layout_alignTop="@id/askedBy"
+        android:layout_alignBottom="@id/askedBy"
         android:layout_below="@+id/textView6"
-        android:layout_toRightOf="@id/textView7"
+        android:layout_toRightOf="@id/askedBy"
         android:layout_marginRight="108dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="8dp"

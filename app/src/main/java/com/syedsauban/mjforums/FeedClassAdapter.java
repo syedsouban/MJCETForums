@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.RecyclerViewHolder>
 {
-
     private ArrayList<FeedClass> arrayList=new ArrayList<FeedClass>();
     public FeedClassAdapter(ArrayList<FeedClass> arrayList)
     {
@@ -33,7 +35,7 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
         holder.answeredby.setText(feedClass.getAnsweredby());
         holder.answeredbyCred.setText(feedClass.getAnsweredbyCred());
         holder.answerPreview.setText(feedClass.getAnswerPreview());
-        holder.answeredbyProfpic.setImageResource(feedClass.getAnsweredbyProfpic());
+
     }
 
     @Override
@@ -42,17 +44,20 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
     }
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder
     {
+        ImageButton upvoteButton;
         ImageView answeredbyProfpic;
+        TextView answer,follow,comment,readmore;
         TextView question,askedby,answeredbyCred,answeredby,answerPreview;
         public RecyclerViewHolder(View itemView) {
             super(itemView);
+
+
             question=(TextView)itemView.findViewById(R.id.question);
-            askedby=(TextView)itemView.findViewById(R.id.askedby);
+            askedby=(TextView)itemView.findViewById(R.id.askedBy);
             answeredby=(TextView)itemView.findViewById(R.id.answeredbyname);
             answeredbyCred=(TextView)itemView.findViewById(R.id.answerCredential);
             answerPreview=(TextView)itemView.findViewById(R.id.answerpreview);
             answeredbyProfpic=(ImageView)itemView.findViewById(R.id.answerprofile);
-
         }
     }
 }

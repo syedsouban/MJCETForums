@@ -54,13 +54,10 @@ public class CustomTabLayout extends TabLayout {
         for (int i = 0; i < tabChildCount; i++) {
             View tabViewChild = tabView.getChildAt(i);
             if (tabViewChild instanceof TextView) {
-
-
-                ((TextView) tabViewChild).setPadding(3,0,3,0);
+//                ((TextView) tabViewChild).setPadding(3,0,3,0);
                 ((TextView) tabViewChild).setTypeface(mTypeface, Typeface.NORMAL);
-                ((TextView) tabViewChild).setTextSize(pxFromDp(40,mContext));
+//                ((TextView) tabViewChild).setTextSize(pxFromDp(70,mContext));
             }
         }
     }
-
 }
