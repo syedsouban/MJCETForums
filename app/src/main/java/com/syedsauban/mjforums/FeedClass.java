@@ -3,6 +3,8 @@ package com.syedsauban.mjforums;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Ajaaz on 9/28/2017.
  */
@@ -11,14 +13,29 @@ public class FeedClass
 {
     private String question,askedby,answeredby,answerPreview,answeredbyCred;
     private int answeredbyProfpic;
-
-    public FeedClass(String question, String askedby, String answeredby, String answerPreview, String answeredbyCred, int answeredbyProfpic) {
+    private ArrayList<String> tags;
+    int numberOfAnswers;
+    public FeedClass(String question, String askedby, String answeredby, String answerPreview, String answeredbyCred, int answeredbyProfpic,ArrayList<String> tags,int numberOfAnswers) {
         this.question = question;
         this.askedby = askedby;
         this.answeredby = answeredby;
         this.answerPreview = answerPreview;
         this.answeredbyCred = answeredbyCred;
         this.answeredbyProfpic = answeredbyProfpic;
+        this.numberOfAnswers=numberOfAnswers;
+        this.tags=tags;
+    }
+
+    public int getNumberOfAnswers() {
+        return numberOfAnswers;
+    }
+
+    public void setNumberOfAnswers(int numberOfAnswers) {
+        this.numberOfAnswers = numberOfAnswers;
+    }
+
+    public ArrayList<String> getTags() {
+        return tags;
     }
 
     public String getQuestion() {

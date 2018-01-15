@@ -13,8 +13,13 @@
 On the way, he told me his story. He was a very successful trader in the stock market and had made millions already. But, he needed people around him to connect at a personal level. He started driving random people to random destinations just for one purpose - to feel real. Too much money had distorted his being.
 
 High paying jobs are usually very stressful and affect your mental and physical health. Relationships, both at work and home are among the victims. Sometimes you will be forced to do things that are unethical just to stay where you are. It becomes hard to slow down, distinguish between right and wrong or even to think of it in the race to nowhere.</string>
-<string name="answer3">Google Maps, and most navigation applications, use an algorithm called the Dijkstra algorithm to find the most efficient route.
+    <string name="answer3">Google Maps, and most navigation applications, use an algorithm called the Dijkstra algorithm to find the most efficient route.
 
 Google Maps looks at the streets map as a graph, made out of nodes - locations on the map, and edges - roads connecting different locations. When you try to navigate from one node to another (one location to another), the route is composed of different edges (roads) you can travel on. For example, consider the following map, with the graph representation layer over it:</string>
-<string name="auth_failed">Auth failed</string>
+    <string name="auth_failed">Auth failed</string>
+    <string name="title_activity_year_and_dept_details">YearAndDeptDetails</string>
+    <string name="selectdept">Select your year of study</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

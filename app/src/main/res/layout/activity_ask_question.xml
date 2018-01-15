@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+    <View android:layout_height="55dp"
+        android:background="#80c7ff"
+        android:layout_width="match_parent"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/askaquestion"
+            android:textStyle="bold"
+            fontPath="font/roboto_regular.ttf"
+            tools:ignore="MissingPrefix"
+            android:text="Ask a Question"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#80c7ff"/>
+
+        <ImageButton
+            android:src="@drawable/add_button"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:background="#80c7ff"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:id="@+id/AnswerButton"
+            />
+        </RelativeLayout>
+    </FrameLayout>
+
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="6dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#80c7ff"
+            app:backgroundTint="#80c7ff"
+            android:gravity="top"
+            fontPath="font/pt_sans_web_bold.ttf"
+            tools:ignore="MissingPrefix"
+            android:id="@+id/question"
+            android:hint="Hey user, feel free to ask!"
+            android:paddingTop="6dp"
+            android:textColorHint="#666666"
+            android:textSize="16sp" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#989898"/>
+    <android.support.v7.widget.AppCompatEditText
+        fontPath="font/nunito_light.ttf"
+        tools:ignore="MissingPrefix"
+        android:padding="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/question_details"
+        android:layout_below="@id/divider"
+        android:hint="Question details"/>
+
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexbox"
+
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"
+        app:alignItems="flex_start"
+        app:alignContent="flex_start"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"/>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#989898"/>
+    <EditText
+        fontPath="font/nunito_light.ttf"
+        tools:ignore="MissingPrefix"
+        android:background="#fff"
+        android:padding="6dp"
+        android:hint="Add atleast three tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittext"/>
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#989898"/>
+    <!--<Button-->
+        <!--android:id="@+id/addTagButton"-->
+        <!--android:layout_margin="6dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Add new tag"-->
+        <!--android:paddingTop="6dp"-->
+        <!--android:paddingBottom="6dp"-->
+        <!--android:paddingLeft="12dp"-->
+        <!--android:paddingRight="12dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:background="@drawable/rounded"/>-->
+    <ListView
+        android:divider="@null"
+        android:id="@+id/listview"
+        android:background="#dddddd"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+
+</LinearLayout>

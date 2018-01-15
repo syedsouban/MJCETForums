@@ -6,53 +6,70 @@
     android:layout_height="170dp"
     android:background="#80c7ff">
 
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
-        android:src="@drawable/dp1"
-        app:civ_border_width="2dp"
-        android:id="@+id/profindr"
-        app:civ_border_color="#ffffff"
+    <FrameLayout
+        android:id="@+id/profileFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true">
+
+        <com.facebook.login.widget.ProfilePictureView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+
+            app:civ_border_width="2dp"
+            android:id="@+id/profilePicNavHeader"
+            app:civ_border_color="#ffffff"
+             />
+
+
+        <ImageView
+            android:id="@+id/android"
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+
+            app:srcCompat="@drawable/subtracted_circle"
+
+            android:contentDescription="@null" />
+
+    </FrameLayout>
 
     <TextView
         android:textColor="#FFFFFF"
         android:textSize="25sp"
-        android:id="@+id/textView6"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Syed Souban"
         android:layout_marginLeft="16dp"
-
         android:layout_marginTop="60dp"
-        android:layout_toRightOf="@+id/profindr"
-        android:layout_toEndOf="@+id/profindr"
+        android:layout_toRightOf="@+id/profileFrame"
+        android:layout_toEndOf="@+id/profileFrame"
         android:layout_marginStart="16dp" />
 
     <TextView
         android:textColor="#FFFFFF"
-        android:id="@+id/askedBy"
+        android:id="@+id/deptandyear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CSE III/IV"
-        android:layout_alignBottom="@+id/profindr"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
+        android:layout_alignBottom="@+id/profileFrame"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name"
         android:layout_marginBottom="9dp" />
 
     <TextView
-        android:id="@+id/readmore"
+        android:id="@+id/position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="ADMIN"
-        android:layout_alignTop="@id/askedBy"
-        android:layout_alignBottom="@id/askedBy"
-        android:layout_below="@+id/textView6"
-        android:layout_toRightOf="@id/askedBy"/>
+        android:layout_alignTop="@id/deptandyear"
+        android:layout_alignBottom="@id/deptandyear"
+        android:layout_below="@+id/name"
+        android:layout_toRightOf="@id/deptandyear"/>
 
 </RelativeLayout>

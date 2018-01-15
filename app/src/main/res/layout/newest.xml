@@ -3,10 +3,14 @@
 
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
+        android:layout_below="@id/tabs"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerviewinfeed"
-        />
+        android:id="@+id/recyclerviewinfeed" />
 </RelativeLayout>

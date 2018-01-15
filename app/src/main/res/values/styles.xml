@@ -10,9 +10,8 @@
         <item name="windowNoTitle">true</item>
 
 
-
-
     </style>
+
     <style name="MyTabLayout" parent="MyCustomTabLayout">
         <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
     </style>
@@ -22,6 +21,7 @@
 
         <item name="textAllCaps">false</item>
     </style>
+
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
 
         <item name="tabTextAppearance">@style/MyCustomTabText</item>
@@ -35,15 +35,19 @@
 
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-        <!--<style name="MyActionBar" parent="ThemeOverlay.AppCompat">-->
-            <!--<item name="android:background">#F3F5F8</item>-->
-        <!--</style>-->
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!--<style name="MyActionBar" parent="ThemeOverlay.AppCompat">-->
+    <!--<item name="android:background">#F3F5F8</item>-->
+    <!--</style>-->
 
 
     <!--<style name="AppTheme.NoActionBar">-->
-        <!--<item name="windowActionBar">false</item>-->
-        <!--<item name="windowNoTitle">true</item>-->
+    <!--<item name="windowActionBar">false</item>-->
+    <!--<item name="windowNoTitle">true</item>-->
     <!--</style>-->
 
     <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->

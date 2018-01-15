@@ -16,6 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.R.id.message;
 
@@ -27,9 +29,9 @@ public class SignupScreen extends AppCompatActivity {
     String username,email,password;
     FirebaseUser user;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
         usernameEditText=(EditText)findViewById(R.id.usernameEditText);
@@ -61,9 +63,7 @@ public class SignupScreen extends AppCompatActivity {
                                     }
                                 });
                     }
-
                     else
-
                         startActivity(new Intent(SignupScreen.this,launching.class));
                     } else {
                         // User is signed out
@@ -81,6 +81,9 @@ public class SignupScreen extends AppCompatActivity {
                 email=emailEditText.getText().toString().trim();
 
                 password=passwordEditText.getText().toString().trim();
+                emailEditText.setText("");
+                passwordEditText.setText("");
+                usernameEditText.setText("");
 
                 OnCompleteListener<AuthResult> onCompleteListener=
 
@@ -89,7 +92,13 @@ public class SignupScreen extends AppCompatActivity {
                     public void onComplete(@NonNull Task task) {
                         if(task.isSuccessful())
                         {
-                            Toast.makeText(SignupScreen.this, "Signup Successfull", Toast.LENGTH_SHORT).show();
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("users");
+                            String userId=myRef.push().getKey();
+                            User newUser=new User(username,email);
+                            myRef.child(userId).setValue(newUser);
+                            myRef.child(userId).child("isDAYset").setValue("false");
+                            Toast.makeText(SignupScreen.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
                         }
                         if (!task.isSuccessful()) {
                             FirebaseAuthException e = (FirebaseAuthException)task.getException();
@@ -113,7 +122,6 @@ public class SignupScreen extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
     public void onLoginClicked(View view)
     {
         startActivity(new Intent(SignupScreen.this,LoginScreen.class));

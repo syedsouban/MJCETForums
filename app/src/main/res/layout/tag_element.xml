@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="#f3f5f8"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<android.support.v7.widget.CardView android:layout_gravity="center"
+    android:layout_margin="6dp"
+    android:background="#fff"
+    app:cardCornerRadius="14dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <TextView android:layout_height="22dp"
+        android:text="D"
+        fontPath="font/raleway_extrabold.ttf"
+        tools:ignore="MissingPrefix"
+        android:layout_margin="4dp"
+        android:textColor="#fff"
+        android:layout_weight="0"
+        android:id="@+id/initialTV"
+        android:padding="8dp"
+        android:gravity="center"
+        android:background="@drawable/round_tv"
+        android:layout_width="22dp"/>
+    <TextView
+        android:textColor="#000"
+        fontPath="font/raleway_extrabold.ttf"
+        tools:ignore="MissingPrefix"
+        android:layout_margin="4dp"
+        android:id="@+id/tag_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="14sp"
+        android:text="Android"/>
+
+</LinearLayout>
+    </android.support.v7.widget.CardView>
+    </LinearLayout>
