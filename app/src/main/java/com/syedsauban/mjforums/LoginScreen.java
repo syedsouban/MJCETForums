@@ -201,16 +201,10 @@ CallbackManager callbackManager;
 
                         }
                     });
-
-
-
-
-
                     // User is signed in
 //                    Log.d("LoginScreen", "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     progressBar.setVisibility(View.GONE);
-
 //                    startActivity(new Intent(LoginScreen.this,MainActivity.class));
                     // User is signed out
 //                    Log.d("LoginScreen", "onAuthStateChanged:signed_out");
@@ -246,7 +240,6 @@ CallbackManager callbackManager;
                                                 FirebaseAuthException e = (FirebaseAuthException)task.getException();
                                                 Toast.makeText(LoginScreen.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
-
                                             // ...
                                         }
                                     });
@@ -259,21 +252,18 @@ CallbackManager callbackManager;
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
                 UserId=loginResult.getAccessToken().getUserId();
                 prefs.edit().putString("UserId","" +
                         "").apply();
                 prefs.edit().putString("UserId",UserId).apply();
                 handleFacebookAccessToken(loginResult.getAccessToken());
                 Toast.makeText(LoginScreen.this,"Success",Toast.LENGTH_SHORT).show();
-
             }
             @Override
             public void onCancel() {
                 // App code
                 Toast.makeText(LoginScreen.this,"Cancelled",Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onError(FacebookException exception) {
                 // App code

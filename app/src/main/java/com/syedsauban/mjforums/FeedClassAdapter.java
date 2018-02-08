@@ -6,6 +6,7 @@ package com.syedsauban.mjforums;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -37,7 +38,7 @@ import static android.view.View.GONE;
 
 public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.RecyclerViewHolder>
 {
-    static int counter=1;
+
     Context context;
     DatabaseReference mReference;
     String QuestionKey;
@@ -52,55 +53,70 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
     }
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_view,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_view,parent,false);
         RecyclerViewHolder recyclerViewHolder=new RecyclerViewHolder(view,context);
         return recyclerViewHolder;
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    public static int dpToPx(int dp)
+    {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
     @Override
     public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
         final Answer feedClass=arrayList.get(position);
         userName=prefs.getString("name","");
-
-        QuestionKey=feedClass.getQuestionString();
-        if(QuestionKey!=null)
-            if(QuestionKey.contains(".")||QuestionKey.contains("#")||QuestionKey.contains("$")||QuestionKey
-                    .contains("[")||QuestionKey.contains("]"))
+        String QuestionKeey;
+        QuestionKeey=feedClass.getQuestionString();
+        if(QuestionKeey!=null)
+            if(QuestionKeey.contains(".")||QuestionKeey.contains("#")||QuestionKeey.contains("$")||QuestionKeey
+                    .contains("[")||QuestionKeey.contains("]"))
             {
-                QuestionKey=QuestionKey.replace("."," ");
-                QuestionKey=QuestionKey.replace("#"," ");
-                QuestionKey=QuestionKey.replace("$"," ");
-                QuestionKey=QuestionKey.replace("["," ");
-                QuestionKey=QuestionKey.replace("]"," ");
+                QuestionKeey=QuestionKeey.replace("."," ");
+                QuestionKeey=QuestionKeey.replace("#"," ");
+                QuestionKeey=QuestionKeey.replace("$"," ");
+                QuestionKeey=QuestionKeey.replace("["," ");
+                QuestionKeey=QuestionKeey.replace("]"," ");
             }
+
+
         holder.question.setText(feedClass.getQuestionString());
+
+
+
+        Log.v("numberOfUpvotes",feedClass.getNumberOfUpvotes()+"");
         holder.askedby.setText(feedClass.getNameOfAsker());
-            FirebaseDatabase.getInstance().getReference().child("Answers").child(QuestionKey).addValueEventListener(
+            FirebaseDatabase.getInstance().getReference().child("Answers").child(QuestionKeey).addValueEventListener(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists())
                         {
                             long numberOfAnswers=dataSnapshot.getChildrenCount();
-                            if(numberOfAnswers==1)
-                            {
+//                            if(numberOfAnswers==1)
+//                            {
                                 holder.wrapper.setVisibility(View.VISIBLE);
                                 holder.numberOfAnswers.setVisibility(GONE);
-
                                 holder.answeredby.setText(feedClass.getAnswerWrittenBy());
                                 holder.answeredbyCred.setText(feedClass.getDeptAndYear());
                                 holder.answerPreview.setText(feedClass.getAnswerString());
                                 holder.profilePictureView.setProfileId(feedClass.getUserId());
-                            }
-                            else
-                            {
-                                holder.wrapper.setVisibility(View.GONE);
-                                holder.numberOfAnswers.setVisibility(View.VISIBLE);
-                                holder.numberOfAnswers.setText(numberOfAnswers+" Answers");
-                            }
+//                            }
+//                            else
+//                            {
+//                                holder.wrapper.setVisibility(View.GONE);
+//                                holder.numberOfAnswers.setVisibility(View.VISIBLE);
+//                                holder.numberOfAnswers.setText(numberOfAnswers+" Answers");
+//                            }
                         }
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
@@ -108,19 +124,56 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
                 }
         );
 
-
-
-
-
-
-
         for(String tag:feedClass.getTags())
         {
             holder.chipCloud.addChip(tag);
         }
+        final String finalQuestionKeey = QuestionKeey;
+        FirebaseDatabase.getInstance().getReference().child("Questions").
+                child(finalQuestionKeey).child("Followers")
+                .addChildEventListener(new ChildEventListener() {
+
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        if(dataSnapshot.exists())
+                        {
+                            Log.v("onChildAdded",dataSnapshot.toString());
+                            if(dataSnapshot.getValue().equals(userName))
+                            {
+                                Log.v("userFollowing",holder.question.getText().toString());
+                                holder.FollowButton.setChecked(true);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists())
+                        {
+                            Log.v("onChildRemoved",dataSnapshot.toString());
+
+                        }
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
         mReference=FirebaseDatabase.getInstance().getReference();
 
-        mReference.child("Questions").child(QuestionKey).child("Followers").addValueEventListener(new ValueEventListener() {
+        mReference.child("Questions").child(QuestionKeey).child("Followers").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -136,46 +189,78 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
             }
         });
 
+        FirebaseDatabase.getInstance().getReference().child("Answers")
+                .child(finalQuestionKeey).child(feedClass.getAnswerWrittenBy()).child("Upvoters")
+                .addValueEventListener(new ValueEventListener() {
 
-        holder.FollowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                {
+                    holder.numberOfUpvotes.setText(dataSnapshot.getChildrenCount()+" Upvotes");
+                }
+                else
+                    holder.numberOfUpvotes.setText("0 Upvotes");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        FirebaseDatabase.getInstance().getReference().child("Answers").child(finalQuestionKeey);
+
+
+
+
+        holder.UpVoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button b=(Button)v;
-                String status=b.getText().toString();
-                if(status.equals("Follow"))
-                {
-                    b.setText("Following");
 
-                    mReference.child("Questions").child(QuestionKey).child("Followers").child(userName).setValue(userName);
+                if(((ToggleButton) v).isChecked())
+                {
+                    FirebaseDatabase.getInstance().getReference().child("Answers")
+                    .child(finalQuestionKeey).child(feedClass.getAnswerWrittenBy()).child("Upvoters")
+                    .child(userName).setValue(userName);
                 }
                 else
                 {
-                    b.setText("Follow");
-                    mReference.child("Questions").child(QuestionKey).child("Followers").child(userName).removeValue();
+                    FirebaseDatabase.getInstance().getReference().child("Answers")
+                            .child(finalQuestionKeey).child(feedClass.getAnswerWrittenBy()).child("Upvoters")
+                            .child(userName).removeValue();
                 }
-                mReference.child("Questions").child(QuestionKey).child("Followers").addValueEventListener(new ValueEventListener() {
 
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists())
-                        {
-                            holder.numberOfFollowers.setText(dataSnapshot.getChildrenCount()+"");
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
-        mReference.child("Questions").child(QuestionKey).child("Followers").addChildEventListener(new ChildEventListener() {
+        holder.FollowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("FollowButtonClicked","Question: "+ finalQuestionKeey);
+
+                String ToggleButtonState =((ToggleButton) v).getText().toString();
+                if(ToggleButtonState.equals("Follow"))
+                {
+                    FirebaseDatabase.getInstance().getReference().child("Questions")
+                            .child(finalQuestionKeey).child("Followers")
+                            .child(userName).removeValue();
+                }
+                else if(ToggleButtonState.equals("Following"))
+                {
+                    FirebaseDatabase.getInstance().getReference().child("Questions")
+                            .child(finalQuestionKeey).child("Followers")
+                            .child(userName).setValue(userName);
+                }
+            }
+        });
+
+        mReference.child("Questions").child(finalQuestionKeey).child("Followers").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Log.d("ChildCallBacks","OnChildAddedCalled");
                 if(dataSnapshot.exists())
                 {
+                    Log.v("Followers",dataSnapshot.toString());
                     for(DataSnapshot ds:dataSnapshot.getChildren())
                     {
                         if(ds.getValue().toString().equals(userName))
@@ -217,33 +302,86 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
             }
         });
 
-        holder.UpVoteButton.setOnClickListener(new View.OnClickListener() {
-
+        FirebaseDatabase.getInstance().getReference().child("Answers")
+                .child(finalQuestionKeey).child(feedClass.getAnswerWrittenBy()).child("Upvoters")
+                .addChildEventListener(new ChildEventListener() {
             @Override
-            public void onClick(View v) {
-                if(counter%2==0) {
-                    ((ImageButton) v).setImageDrawable(ContextCompat.getDrawable(context, R.drawable.upvoted));
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d("ChildCallBacks","OnChildAddedCalled");
+                if(dataSnapshot.exists())
+                {
+                    Log.v("Upvoters",dataSnapshot.toString());
+
+                        if(dataSnapshot.getValue().toString().equals(userName))
+
+//                            .FollowButton.setText("Following");
+                            holder.upvoteButton.setChecked(true);
+
 
                 }
-                    else
-                    ((ImageButton) v).setImageDrawable(ContextCompat.getDrawable(context, R.drawable.upvoted));
-                counter++;
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Log.d("ChildCallBacks","OnChildChangedCalled");
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//                Log.d("ChildCallBacks","OnChildRemovedCalled");
+//                if(dataSnapshot.exists())
+//                {
+//                    for(DataSnapshot ds:dataSnapshot.getChildren())
+//                    {
+//                        if(ds.getValue().toString().equals(userName))
+//                        {
+//                            holder.FollowButton.setText("Follow");
+//                        }
+//                    }
+//                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                Log.d("ChildCallBacks","OnChildMovedCalled");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
+
+        FirebaseDatabase.getInstance().getReference().child("Questions")
+                .child(finalQuestionKeey).child("Followers").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists())
+                        holder.numberOfFollowers.setText(dataSnapshot.getChildrenCount()+"");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
 
         holder.answerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Answer thisQuestion=arrayList.get(position);
-                QuestionKey=thisQuestion.getQuestionString();
-                if(QuestionKey.contains(".")||QuestionKey.contains("#")||QuestionKey.contains("$")||QuestionKey
-                        .contains("[")||QuestionKey.contains("]"))
+                String QuestionKeey=thisQuestion.getQuestionString();
+                if(QuestionKeey.contains(".")||QuestionKeey.contains("#")||QuestionKeey.contains("$")||QuestionKeey
+                        .contains("[")||QuestionKeey.contains("]"))
                 {
-                    QuestionKey=QuestionKey.replace("."," ");
-                    QuestionKey=QuestionKey.replace("#"," ");
-                    QuestionKey=QuestionKey.replace("$"," ");
-                    QuestionKey=QuestionKey.replace("["," ");
-                    QuestionKey=QuestionKey.replace("]"," ");
+                    QuestionKeey=QuestionKeey.replace("."," ");
+                    QuestionKeey=QuestionKeey.replace("#"," ");
+                    QuestionKeey=QuestionKeey.replace("$"," ");
+                    QuestionKeey=QuestionKeey.replace("["," ");
+                    QuestionKeey=QuestionKeey.replace("]"," ");
                 }
                 Log.d("MyTest",thisQuestion.getQuestionString()+" "+thisQuestion.getUserKey());
                 String questionString =thisQuestion.getQuestionString();
@@ -254,7 +392,7 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
                 ArrayList<String> tags=new ArrayList<String>();
                 tags=thisQuestion.getTags();
                 Intent intent=new Intent(context,SubmitAnswer.class);
-                intent.putExtra("questionKey",QuestionKey);
+                intent.putExtra("questionKey",finalQuestionKeey);
                 intent.putExtra("questionString",questionString);
                 intent.putExtra("questionDetails",questionDetails);
                 intent.putExtra("UserKey",UserKey);
@@ -263,8 +401,8 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
                 context.startActivity(intent);
             }
         });
-
     }
+
 
     @Override
     public int getItemCount() {
@@ -273,7 +411,7 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder
     {
         com.cunoraz.tagview.TagView tagView;
-        ImageButton upvoteButton;
+        ToggleButton upvoteButton;
         Context context;
         ImageView answeredbyProfpic;
         TextView answer,follow,comment,readmore;
@@ -283,14 +421,15 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
         TextView question,askedby,answeredbyCred,answeredby,answerPreview;
         RelativeLayout wrapper;
         Button numberOfAnswers;
-        Button FollowButton;
-        ImageButton UpVoteButton;
+        ToggleButton FollowButton;
+        ToggleButton UpVoteButton;
         ImageButton answerButton;
         TextView numberOfFollowers;
+        TextView numberOfUpvotes;
         public RecyclerViewHolder(View itemView,Context context) {
             super(itemView);
             this.context=context;
-            UpVoteButton=(ImageButton)itemView.findViewById(R.id.thumbs_up);
+            UpVoteButton=(ToggleButton) itemView.findViewById(R.id.thumbs_up);
             profilePictureView=(ProfilePictureView)itemView.findViewById(R.id.profilePicCustomView);
             question=(TextView)itemView.findViewById(R.id.question);
             askedby=(TextView)itemView.findViewById(R.id.deptandyear);
@@ -300,16 +439,16 @@ public class FeedClassAdapter extends RecyclerView.Adapter<FeedClassAdapter.Recy
             answerPreview=(TextView)itemView.findViewById(R.id.answerpreview);
             wrapper=(RelativeLayout)itemView.findViewById(R.id.wrapper);
             numberOfAnswers=(Button)itemView.findViewById(R.id.numberOfAnswers);
-            FollowButton=(Button)itemView.findViewById(R.id.followButtonUA);
+            FollowButton=(ToggleButton) itemView.findViewById(R.id.followButtonUA);
             answerButton=(ImageButton)itemView.findViewById(R.id.answerButtonUA);
             numberOfFollowers=(TextView)itemView.findViewById(R.id.numberOfFollowers);
-
-
+            upvoteButton=(ToggleButton)itemView.findViewById(R.id.thumbs_up);
+            numberOfUpvotes=(TextView)itemView.findViewById(R.id.numberOfUpvotes);
             ChipCloudConfig config = new ChipCloudConfig()
                     .selectMode(ChipCloud.SelectMode.multi)
                     .checkedChipColor(Color.parseColor("#008FFE"))
                     .checkedTextColor(Color.parseColor("#ffffff"))
-                    .uncheckedChipColor(Color.parseColor("#008FFE"))
+                    .uncheckedChipColor(Color.parseColor("#80c7ff"))
                     .uncheckedTextColor(Color.parseColor("#ffffff"))
                     .useInsetPadding(true);
 
