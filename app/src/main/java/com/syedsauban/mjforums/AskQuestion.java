@@ -41,6 +41,9 @@ public class AskQuestion extends AppCompatActivity {
     EditText Question,QuestionDetails;
 
     FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener mAuthListener;
+    FirebaseUser user;
+
 
     public static int counter=0;
     FlexboxLayout flexbox;
@@ -58,8 +61,7 @@ public class AskQuestion extends AppCompatActivity {
 
     ArrayList<String> tagslist;
     SharedPreferences prefs;
-    FirebaseAuth.AuthStateListener mAuthListener;
-    FirebaseUser user;
+
 
     String UserName;
     String UserEmail;
@@ -101,6 +103,7 @@ public class AskQuestion extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_ask_question);
+
 
         tags=new ArrayList<>();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -202,7 +205,16 @@ public class AskQuestion extends AppCompatActivity {
                 if(user!=null)
                 {
                     UserEmail=user.getEmail();
-
+                    AskQuestionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onQuestionAsked();
+                        }
+                    });
+                }
+                else
+                {
+                    finish();
                 }
             }
         };
@@ -210,12 +222,7 @@ public class AskQuestion extends AppCompatActivity {
 
         Question=(EditText)findViewById(R.id.question);
         QuestionDetails=(EditText)findViewById(R.id.question_details);
-        AskQuestionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onQuestionAsked();
-            }
-        });
+
 //        AskQuestionButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //            @Override
 //            public void onFocusChange(View v, boolean hasFocus) {
@@ -341,15 +348,20 @@ public class AskQuestion extends AppCompatActivity {
             UserName=prefs.getString("name","");
 
             com.syedsauban.mjforums.Question NewQuestion=new Question(QuestionString,UserEmail,UserName,QuestionDetailsString,tags,new Date().getTime()*-1,key);
-            if(key!=null)
-            {
-                myRef.child("Questions").child(QuestionKey).setValue(NewQuestion);
-                myRef.child("users").child(key).child("Questions").child(QuestionKey).setValue(NewQuestion);
-                for(String tag:tags)
+            if(key!=null) {
+                if(!tags.isEmpty())
                 {
-                    myRef.child("Tags").child(tag).child("Questions").child(QuestionKey).setValue(NewQuestion);
+                    myRef.child("Questions").child(QuestionKey).setValue(NewQuestion);
+                    myRef.child("users").child(key).child("Questions").child(QuestionKey).setValue(NewQuestion);
+                    for (String tag : tags) {
+                        myRef.child("Tags").child(tag).child("Questions").child(QuestionKey).setValue(NewQuestion);
+                    }
+                    startActivity(new Intent(AskQuestion.this, launching.class));
                 }
-                startActivity(new Intent(AskQuestion.this,launching.class));
+                else
+                {
+                    Toast.makeText(this, "Please select one or more tags!", Toast.LENGTH_SHORT).show();
+                }
             }
         }
 //        else {

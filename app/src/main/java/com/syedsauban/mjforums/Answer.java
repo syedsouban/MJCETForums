@@ -9,12 +9,17 @@ import java.util.ArrayList;
 public class Answer {
     private String AnswerString,AnswerWrittenBy;
             long timestamp;
+    private boolean isDisplayAnswer;
     private ArrayList<String> tags;
     private String deptAndYear;
+    private int numberOfUpvotes;
 
     private String UserKey,UserId,QuestionString,QuestionDetailsString,NameOfAsker;
-    public Answer(long timestamp,String QuestionString, String QuestionDetailsString,String NameOfAsker, String AnswerString, String AnswerWrittenBy, String UserKey, String UserId, String deptAndYear, ArrayList<String> tags)
+    public Answer(long timestamp,String QuestionString, String QuestionDetailsString,String NameOfAsker, String AnswerString, String AnswerWrittenBy, String UserKey, String UserId, String deptAndYear, ArrayList<String> tags,int numberOfUpvotes
+    )
     {
+        this.isDisplayAnswer=false;
+        this.numberOfUpvotes=numberOfUpvotes;
         this.timestamp=timestamp;
         this.NameOfAsker=NameOfAsker;
         this.deptAndYear=deptAndYear;
@@ -26,8 +31,12 @@ public class Answer {
         this.AnswerString=AnswerString;
         this.AnswerWrittenBy=AnswerWrittenBy;
     }
-    public Answer(long timestamp,String QuestionString, String QuestionDetailsString,String NameOfAsker,ArrayList<String> tags)
+
+    public Answer(long timestamp,String QuestionString, String QuestionDetailsString,String NameOfAsker,ArrayList<String> tags,int numberOfUpvotes
+    )
     {
+        this.isDisplayAnswer=false;
+        this.numberOfUpvotes=numberOfUpvotes;
         this.timestamp=timestamp;
         this.NameOfAsker=NameOfAsker;
         this.QuestionString=QuestionString;
@@ -40,6 +49,13 @@ public class Answer {
 
     }
 
+    public boolean isDisplayAnswer() {
+        return isDisplayAnswer;
+    }
+
+    public void setDisplayAnswer(boolean displayAnswer) {
+        isDisplayAnswer = displayAnswer;
+    }
 
     public long getTimestamp() {
         return timestamp;
@@ -122,5 +138,15 @@ public class Answer {
     public void setUserId(String userId) {
         UserId = userId;
     }
+
+    public int getNumberOfUpvotes() {
+        return numberOfUpvotes;
+    }
+
+    public void setNumberOfUpvotes(int numberOfUpvotes) {
+        this.numberOfUpvotes = numberOfUpvotes;
+    }
+
+
 }
 

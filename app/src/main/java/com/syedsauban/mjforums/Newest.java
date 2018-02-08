@@ -46,12 +46,12 @@ public class Newest extends android.support.v4.app.Fragment {
 
         recyclerView.setAdapter(feedClassAdapter);
 
-        Query query=mReference.child("Answers").orderByChild("timestamp");
+        Query query=mReference.child("Answers");
 
 
-        query.addValueEventListener(new ValueEventListener() {
 
 
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists())
@@ -60,20 +60,84 @@ public class Newest extends android.support.v4.app.Fragment {
                     {
                         if(ds.exists())
                         {
-                            if (ds.getChildrenCount()==1)
-                            {
-                                Log.d("Testting",ds.getChildren().iterator().next().getValue(Answer.class).getAnswerString());
-                                Answer answer = ds.getChildren().iterator().next().getValue(Answer.class);
-                                answers.add(answer);
-                                feedClassAdapter.notifyDataSetChanged();
+//                            Answer displayAnswer=new Answer();
+//                            Answer answer=new Answer();
+                            Log.v("dsInString",ds.toString());
+                            Log.v("dsInString2",ds.getChildren().iterator().next().child("nameOfAsker").toString());
+                            long max=0;
+                            long numberOfUpvotes=0;
+//                            max=(Integer) ds.getChildren().iterator().next().child("numberOfUpvotes")
+//                                    .getValue();
+                            Answer answer = new Answer();
+                            Answer displayAnswer=new Answer();
+                            String displayAnswerString="empty";
+                            for(DataSnapshot answerChild: ds.getChildren()) {
+                                if (answerChild.exists()) {
+                                    numberOfUpvotes = answerChild.child("Upvoters").getChildrenCount();
+                                    Log.v("NumberOfUpvotes",answerChild.child("Upvoters").getChildrenCount()+"");
+                                    Log.v("NewestDS", answerChild.getValue(Answer.class).getAnswerString()+ "");
+                                    if (max <= numberOfUpvotes) {
+                                        max = numberOfUpvotes;
+                                        displayAnswerString = answerChild.child("answerString")
+                                                .getValue().toString();
+                                        displayAnswer=answerChild.getValue(Answer.class);
+                                    }
+                                }
+                                Log.v("InAnsWB,max",displayAnswer.getAnswerWrittenBy()+","+max);
                             }
-                            else
-                            {
-                                Answer answer = ds.getChildren().iterator().next().getValue(Answer.class);
-                                Answer noAnswer=new Answer(answer.getTimestamp(),answer.getQuestionString(),answer.getQuestionDetailsString(),answer.getNameOfAsker(),answer.getTags());
-                                answers.add(noAnswer);
-                                feedClassAdapter.notifyDataSetChanged();
-                            }
+
+                        Log.v("OutAnsWB,max",displayAnswer.getAnswerWrittenBy()+","+max);
+
+                            answers.add(displayAnswer);
+                            feedClassAdapter.notifyDataSetChanged();
+
+
+
+                            //
+//     if(max<numberOfUpvotes)
+//                                {
+//                                    max=numberOfUpvotes;
+//                                    displayAnswer= answerChild.getValue(Answer.class);
+//
+//                                }
+//                            }
+//                            Log.v("DisplayAnswer",displayAnswer.getAnswerString());
+//                                answers.add(displayAnswer);
+//                                feedClassAdapter.notifyDataSetChanged();
+//
+//////                            Answer displayAnswer=new Answer();
+//////                            int max=0;
+//////                            int numberOfUpvotes;
+////
+////                            Answer answer=ds.getChildren().iterator().next().getValue(Answer.class);
+////
+////                            max=answer.getNumberOfUpvotes();
+////                            while (ds.getChildren().iterator().hasNext())
+////                            {
+////                                answer=ds.getChildren().iterator().next().getValue(Answer.class);
+////                                numberOfUpvotes=answer.getNumberOfUpvotes();
+////                                if(max<numberOfUpvotes)
+////                                {
+////                                    max=numberOfUpvotes;
+////                                    displayAnswer= answer;
+////                                }
+////                            }
+//                            Log.v("NumberOfUpvotes",max+"");
+////                            if (ds.getChildrenCount()==1)
+////                            {
+//                                Log.d("Testting",ds.getChildren().iterator().next().getValue(Answer.class).getAnswerString());
+////                                Answer answer = ds.getChildren().iterator().next().getValue(Answer.class);
+//                                answers.add(displayAnswer);
+//
+//                                feedClassAdapter.notifyDataSetChanged();
+//                            }
+//                            else
+//                            {
+//                                Answer answer = ds.getChildren().iterator().next().getValue(Answer.class);
+//                                Answer noAnswer=new Answer(answer.getTimestamp(),answer.getQuestionString(),answer.getQuestionDetailsString(),answer.getNameOfAsker(),answer.getTags());
+//                                answers.add(noAnswer);
+//                                feedClassAdapter.notifyDataSetChanged();
+//                            }
                         }
                     }
                 }

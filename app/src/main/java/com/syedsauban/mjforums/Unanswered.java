@@ -24,7 +24,7 @@ import java.util.Collections;
  * Created by Syed on 25-08-2017.
  */
 
-public class Unaswered extends android.support.v4.app.Fragment {
+public class Unanswered extends android.support.v4.app.Fragment {
 
 
     FirebaseDatabase mDatabase;
@@ -64,7 +64,7 @@ public class Unaswered extends android.support.v4.app.Fragment {
                 if(dataSnapshot.exists())
                 {
                     Question question = dataSnapshot.getValue(Question.class);
-                            if(!question.isHasAnswers())
+//                            if(!question.isHasAnswers())
                                 questions.add(question);
                                 unasweredFeedAdapter.notifyDataSetChanged();
 

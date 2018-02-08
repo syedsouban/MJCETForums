@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:layout_gravity="center"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/myquestionn"
+        fontPath="font/ubuntu_r.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How was the Einstein's theory that suggested existence of  gravitational waves was proved?"
+        android:textColor="#1d1d1d"
+        android:textSize="20sp"
+        android:visibility="visible"
+        tools:ignore="MissingPrefix" />
+        <TextView
+            android:padding="10dp"
+            fontPath="font/ubuntu_r.ttf"
+            tools:ignore="MissingPrefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/myquestiondetails"
+            android:text="I have searched online but I was unable to find an answer to this question"
+            />
+    </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
